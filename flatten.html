@@ -1,0 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="UTF-8"><meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>Flatten</title>
+</head>
+ 
+ <script src="JS/jquery-3.1.1.min.js"></script> <script> var test= [[[[[0]], [1], [7]], [[[2],[8], [3]]], [[4], [5],[6]]]]; var finalArray={}; function flattening(origArray) {    var endarray = [];    for(var i = 0; i < origArray.length; i++) {        if(Array.isArray(origArray[i])) {            endarray = endarray.concat(flattening(origArray[i]));        } else {            endarray.push(origArray[i]);        }    }    return endarray;}function putInForm(intarray,origArray){	$form = $("<form></form>");	$form.attr('id', 'newForm');	$form.appendTo('#miArea');	$('#newForm').append("Original Array");	for(var i = 0; i < origArray.length; i++) {		$('#newForm').append(origArray[i]);		$('#newForm').append(document.createElement("br"));	}	$('#newForm').append("Flattened Array");	for(var i = 0; i < intarray.length; i++) {		$('#newForm').append(intarray[i]);		$('#newForm').append(document.createElement("br"));	}}$(document).ready(function(){    if(typeof(Storage) !== "undefined") {             finalArray=flattening(test);		   putInForm(finalArray,test);   } else { alert ("Please Update your Browser");}}); </script></head><body>		<div id="miArea" class="two">	</div>	</body></html>
